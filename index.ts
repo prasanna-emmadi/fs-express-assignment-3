@@ -1,9 +1,9 @@
-import express, { Express, Request, Response } from "express";
+import express, { Request, Response } from "express";
 
-import itemsRoute from "./routes/itemsRoute";
-import usersRoute from "./routes/usersRoute";
-import categoriesRoute from "./routes/categoriesRoute";
-import productsRoute from "./routes/productsRoute";
+import itemsRoute from "./routes/itemsRoute.js";
+import usersRoute from "./routes/usersRoute.js";
+import categoriesRoute from "./routes/categoriesRoute.js";
+import productsRoute from "./routes/productsRoute.js";
 import { loggingMiddleware } from "./middlewares/logging.js";
 import { errorLoggingMiddleware } from "./middlewares/error.js";
 
