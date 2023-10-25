@@ -1,4 +1,5 @@
-import express from "express";
+import express, { Express, Request, Response } from "express";
+
 const router = express.Router();
 
 router.use(express.json());
@@ -12,7 +13,7 @@ router.get("/", (_, res) => {
   res.json({ categories });
 });
 
-router.get("/:id", (req, res) => {
+router.get("/:id", (req: Request, res: Response) => {
   const categoryId = parseInt(req.params.id);
   const item = categories.find((p) => p.id === categoryId);
   if (item) {
@@ -22,7 +23,7 @@ router.get("/:id", (req, res) => {
   }
 });
 
-router.post("/", (req, res) => {
+router.post("/", (req: Request, res: Response) => {
   const { name } = req.body;
   if (name) {
     const newCategory = { id: categories.length + 1, name };
@@ -33,7 +34,7 @@ router.post("/", (req, res) => {
   }
 });
 
-router.put("/:id", (req, res) => {
+router.put("/:id", (req: Request, res: Response) => {
   const categoryId = parseInt(req.params.id);
   const { name } = req.body;
 
@@ -51,7 +52,7 @@ router.put("/:id", (req, res) => {
   }
 });
 
-router.delete("/:id", (req, res) => {
+router.delete("/:id", (req: Request, res: Response) => {
   const categoryId = parseInt(req.params.id);
   const index = categories.findIndex((cat) => cat.id === categoryId);
 
