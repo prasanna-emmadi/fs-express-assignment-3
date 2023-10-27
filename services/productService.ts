@@ -1,8 +1,4 @@
-type Product = {
-    id: number;
-    name: string;
-    price: number;
-};
+import { Product } from "../types/products"
 
 export default class ProductService {
     private products: Product[];
