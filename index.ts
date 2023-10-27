@@ -8,13 +8,16 @@ import { loggingMiddleware } from "./middlewares/logging.js";
 import { monitorLoggingMiddleware } from "./middlewares/monitor.js";
 
 import categoriesRoute from "./routes/categoriesRoute.js";
-import productsRoute from "./routes/productsRoute.js";
+
+import productRoute from './routes/productsRoute.js';
+
 
 const PORT = 8080;
 const app = express();
 app.use(express.json());
 
 const categoryController = new CategoryController();
+
 
 app.get("/hello", loggingMiddleware, (req: Request, res: Response) => {
   res.json({ msg: "hello, from Express.js!" });
@@ -26,7 +29,7 @@ app.use(loggingMiddleware);
 app.use("/items", itemsRoute);
 app.use("/users", usersRoute);
 app.use("/categories", categoriesRoute);
-app.use("/products", productsRoute);
+app.use("/products", productRoute);
 
 app.post("/categories", (req, res) =>
   categoryController.createCategory(req, res)
@@ -43,6 +46,8 @@ app.put("/categories/:id", (req, res) =>
 app.delete("/categories/:id", (req, res) =>
   categoryController.deleteCategory(req, res)
 );
+
+
 
 app.use(errorLoggingMiddleware);
 app.use(monitorLoggingMiddleware);
