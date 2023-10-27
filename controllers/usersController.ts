@@ -4,7 +4,6 @@ import { ApiError } from "../errors/ApiError.js";
 
 export function findAllUser(_: Request, res: Response) {
   const users = UsersService.findAll();
-
   res.json({ users });
 }
 
@@ -13,7 +12,8 @@ export function findOneUser(req: Request, res: Response, next: NextFunction) {
   const user = UsersService.findOne(userId);
 
   if (!user) {
-    next(ApiError.resourceNotFound("user not found."));
+    next(ApiError.resourceNotFound("user not found."))
+    return;
   }
   res.json({ user });
 }
@@ -31,6 +31,7 @@ export function updateUser(req: Request, res: Response, next: NextFunction) {
 
   if (userIndex === -1) {
     next(ApiError.resourceNotFound("User not found."));
+    return;
   }
   const updatedUser = UsersService.updateUser(userIndex, updateUserData);
   res.status(200).json({ updatedUser });
@@ -41,6 +42,7 @@ export function deleteUser(req: Request, res: Response, next: NextFunction) {
   const userIndex = UsersService.findIndex(userId);
   if (userIndex === -1) {
     next(ApiError.resourceNotFound("User not found."));
+    return;
   }
   UsersService.deleteUser(userIndex);
   res.status(200).json("User deleted ...");
