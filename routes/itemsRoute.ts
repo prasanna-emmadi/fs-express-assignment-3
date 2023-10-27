@@ -1,15 +1,10 @@
 import express, { Request, Response } from "express";
+import ItemsController from "../controllers/itemsController.js";
+// import { validateUser } from "../middlewares/userValidate.js"
+
 const router = express.Router();
 
-const items = [1, 2, 3, 4, 5, 6];
-
-router.get("/", (_, res) => {
-  res.json({ items });
-});
-
-router.get("/:itemIndex", (req: Request, res: Response) => {
-  const index = parseInt(req.params.itemIndex);
-  res.json({ items: items[index] });
-});
+router.get("/", ItemsController.findAll);
+router.get("/:userId", ItemsController.findOneItem);
 
 export default router;
