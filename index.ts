@@ -22,6 +22,7 @@ app.get("/hello", loggingMiddleware, (req: Request, res: Response) => {
 
 app.use(errorLoggingMiddleware);
 app.use(loggingMiddleware);
+app.use(monitorLoggingMiddleware);
 
 app.use("/items", itemsRoute);
 app.use("/users", usersRoute);
@@ -43,9 +44,6 @@ app.put("/categories/:id", (req, res) =>
 app.delete("/categories/:id", (req, res) =>
   categoryController.deleteCategory(req, res)
 );
-
-app.use(errorLoggingMiddleware);
-app.use(monitorLoggingMiddleware);
 
 app.listen(PORT, () => {
   console.log(`👀 app is running at localhost:${PORT}`);
