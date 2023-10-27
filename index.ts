@@ -10,6 +10,7 @@ import usersRoute from "./routes/usersRoute.js";
 
 const PORT = 8080;
 const app = express();
+app.use(express.json());
 
 app.get("/hello", loggingMiddleware, (req: Request, res: Response) => {
   res.json({ msg: "hello, from Express.js!" });
