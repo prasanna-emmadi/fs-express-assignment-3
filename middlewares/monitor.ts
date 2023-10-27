@@ -2,9 +2,11 @@ import { Request, Response } from "express";
 
 export function monitorLoggingMiddleware(
   req: Request,
-  _: Response,
+  res: Response,
   next: () => void
 ) {
-  console.log("👀 [INFO]: ", req.method, req.path);
+  if (req.method === "POST" && res.statusCode === 200) {
+    console.log("👀 [INFO]: created " + req.path);
+  }
   next();
 }
