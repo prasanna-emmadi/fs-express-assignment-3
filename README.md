@@ -39,3 +39,17 @@ Implement these routes and associated error handling and logging mechanisms in y
 
 1. log every incoming request
 2. monitor status of your application. when entities are created ie, user is created
+
+# Developer instructions
+
+1. Running in the dev mode
+
+```
+npm run dev
+```
+
+2. Production build and start
+
+```
+npm run build && npm run start
+```
