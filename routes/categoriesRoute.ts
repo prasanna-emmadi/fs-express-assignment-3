@@ -9,7 +9,7 @@ router.use(express.json());
 
 router.post("/", (req, res) => categoryController.createCategory(req, res));
 router.get("/", (req, res) => {
-  categoryController.getAllCategories(req, res);
+categoryController.getAllCategories(req, res);
 });
 router.get("/:id", (req, res) => categoryController.getCategoryById(req, res));
 router.put("/:id", (req, res) => categoryController.updateCategory(req, res));
